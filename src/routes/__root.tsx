@@ -1,6 +1,5 @@
 import * as React from 'react'
 import { Link, Outlet, createRootRoute } from '@tanstack/react-router'
-import { TanStackRouterDevtools } from '@tanstack/router-devtools'
 
 export const Route = createRootRoute({
   component: RootComponent,
@@ -18,7 +17,6 @@ function RootComponent() {
               <small className={"opacity-50"}>&copy; 2024 - Created by Carlos Rodriguez</small>
           </footer>
       </div>
-      <TanStackRouterDevtools position="bottom-right" />
     </>
   )
 }
