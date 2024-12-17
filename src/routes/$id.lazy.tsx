@@ -10,24 +10,25 @@ function RouteComponent() {
     const {id} = Route.useParams()
 
     React.useEffect(() => {
-        const fetchMarkdown = async () => {
-            try {
-                const response = await fetch(`/src/notes/${id}.md`);
+
+        fetch(`/src/notes/${id}.md`)
+            .then((response) => {
                 if (!response.ok) {
+                    console.log("error");
                     throw new Error("Failed to fetch the markdown file");
                 }
-                const markdown = await response.text();
+                return response.text();
+            })
+            .then((markdown) => {
                 setMarkdownContent(markdown);
-            } catch (error) {
+            })
+            .catch((error) => {
                 console.error(error);
                 setMarkdownContent("# Error: Unable to load content");
-            }
-        };
-
-        fetchMarkdown();
+            });
     }, [id]);
 
     const [markdownContent, setMarkdownContent] = React.useState<string>("");
 
-    return <Markdown className={"prose"}>{markdownContent}</Markdown>;
+    return <Markdown className={"prose prose-slate dark:prose-invert"}>{markdownContent}</Markdown>;
 }

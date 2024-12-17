@@ -22,6 +22,7 @@
     "vite": "^6.0.3"
   },
   "dependencies": {
+    "@react-spring/web": "^9.7.5",
     "@tanstack/react-router": "^1.91.0",
     "@tanstack/router-devtools": "^1.91.0",
     "react": "^18.3.1",
