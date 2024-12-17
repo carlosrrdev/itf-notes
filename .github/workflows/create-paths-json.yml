@@ -1,4 +1,4 @@
-name: Generate paths.json for notes
+name: Run Shell Script
 
 on:
   push:
@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  generate-paths-json:
+  run-shell-script:
     runs-on: ubuntu-latest
 
     steps:
@@ -15,17 +15,8 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      # Step 5: Generate paths.json
-      - name: Generate paths.json
+      # Step 2: Run the shell script
+      - name: Run my script
         run: |
-          rm -f paths.json
-          find src/notes -type f | jq -R . | jq -s . > paths.json
-
-      # Step 6: Commit and push changes
-      - name: Commit and push changes
-        run: |
-          git config user.name "carlosrrdev"
-          git config user.email "rr.carlos.dev@gmail.com"
-          git add paths.json
-          git diff --cached --exit-code || git commit -m "Update paths.json"
-          git push
+          chmod +x /gen.sh
+          /gen.sh
