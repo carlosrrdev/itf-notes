@@ -19,7 +19,7 @@ jobs:
       - name: Generate paths.json
         run: |
           # Navigate to the notes directory
-          cd notes
+          cd ./src/notes
           
           # Find all files and save the paths in paths.json
           find . -type f | jq -R . | jq -s . > ../paths.json
