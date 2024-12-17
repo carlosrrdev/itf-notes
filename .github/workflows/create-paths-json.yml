@@ -22,7 +22,7 @@ jobs:
           cd ./src/notes
           
           # Find all files and save the paths in paths.json
-          find . -type f | jq -R . | jq -s . > ../paths.json
+          find . -type f | jq -R . | jq -s . > paths.json
 
       # Step 3: Commit and push changes
       - name: Commit and push changes
