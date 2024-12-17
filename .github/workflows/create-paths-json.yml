@@ -20,3 +20,12 @@ jobs:
         run: |
           chmod +x gen.sh
           bash gen.sh
+
+      # Step 3: Commit and push changes
+      - name: Commit and push changes
+        run: |
+          git config user.name "carlosrrdev"
+          git config user.email "rr.carlos.dev@gmail.com"
+          git add paths.json
+          git diff --cached --exit-code || git commit -m "Update paths.json"
+          git push
