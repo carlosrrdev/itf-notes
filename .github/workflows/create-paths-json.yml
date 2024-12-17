@@ -19,6 +19,9 @@ jobs:
         # The paths.json file is created in the repository root
       - name: Generate paths.json
         run: |
+          # Delete existing paths.json if exists
+          rm -f paths.json
+          
           # Find all files in src/notes directory and create paths.json
           find src/notes -type f | jq -R . | jq -s . > paths.json
 
