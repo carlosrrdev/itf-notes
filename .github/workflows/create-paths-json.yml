@@ -36,7 +36,7 @@ jobs:
           git add paths.json
           
           # Commit only if there is a change in paths.json
-          git diff --cached --exit-code || git commit -m "Update paths.json"
+          git commit -m "Update paths.json"
           
           # Push changes back to the repository
           git push
