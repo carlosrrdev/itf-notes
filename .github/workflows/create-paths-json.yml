@@ -1,0 +1,38 @@
+name: Generate paths.json for notes
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch: # Allows you to trigger it manually
+
+jobs:
+  generate-paths-json:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Checkout the repository
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # Step 2: Generate paths.json
+      - name: Generate paths.json
+        run: |
+          # Navigate to the notes directory
+          cd notes
+          
+          # Find all files and save the paths in paths.json
+          find . -type f | jq -R . | jq -s . > ../paths.json
+
+      # Step 3: Commit and push changes
+      - name: Commit and push changes
+        run: |
+          # Navigate back and configure git
+          cd ..
+          git config --local user.name "GitHub Actions"
+          git config --local user.email "actions@github.com"
+          
+          # Stage paths.json, commit, and push
+          git add paths.json
+          git commit -m "Update paths.json"
+          git push
