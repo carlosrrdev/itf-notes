@@ -19,4 +19,4 @@ jobs:
       - name: Run my script
         run: |
           chmod +x gen.sh
-          sh gen.sh
+          bash gen.sh

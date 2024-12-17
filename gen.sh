@@ -1,6 +1,8 @@
 #!/bin/bash
 
 # Look for .md files in the notes directory
+
+# Use mapfile to read .md file paths into an array
 md_files=($(find ./notes -type f -name "*.md"))
 
 # Create an array of paths in JSON format
