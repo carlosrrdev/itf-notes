@@ -10,7 +10,9 @@ function RootComponent() {
     <>
       <div className={"w-full min-h-dvh flex flex-col"}>
           <header className={"container mx-auto p-6 flex justify-center"}>
-              <Link className={"text-2xl font-bold"} to="/">ITF+ Notes</Link>
+              <Link className={"text-4xl"} to="/">
+                  <img className={"w-20"} src="/images/logo.svg" alt=""/>
+              </Link>
           </header>
           <main className={"flex-1 container mx-auto p-6"}><Outlet /></main>
           <footer className={"container mx-auto p-6 flex justify-center"}>

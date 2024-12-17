@@ -4,6 +4,13 @@
 
 @layer base {
     body {
-        @apply bg-slate-100 text-slate-900 dark:bg-neutral-950 dark:text-slate-400;
+        @apply bg-slate-100 text-slate-900 dark:bg-slate-900 dark:text-slate-400;
+    }
+}
+
+@layer components {
+    .link {
+        @apply px-8 py-4 rounded border border-slate-300 dark:border-slate-600 bg-slate-50 hover:bg-slate-200
+        dark:bg-slate-800 flex justify-center transition-colors ease-in-out dark:hover:bg-slate-700
     }
 }

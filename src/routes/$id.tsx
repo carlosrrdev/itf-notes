@@ -30,8 +30,10 @@ function RouteComponent() {
   const { markdown } = Route.useLoaderData()
 
   return (
-    <Markdown className={'prose prose-slate dark:prose-invert'}>
-      {markdown}
-    </Markdown>
+      <div className={'container max-w-screen-lg mx-auto my-16'}>
+        <Markdown className={'prose prose-slate dark:prose-invert'}>
+          {markdown}
+        </Markdown>
+      </div>
   )
 }

@@ -36,8 +36,7 @@ function HomeComponent() {
             <p className={"mb-12"}>This is a collection of my notes in preparation for the ITF+ Certification</p>
             <Trail>
                 {paths.map((path) => (
-                    <Link key={path.id} className={"px-8 py-4 rounded bg-sky-500/10 " +
-                        "flex justify-center transition-colors ease-in-out hover:bg-sky-500/30"}
+                    <Link key={path.id} className={"link"}
                           to={"/$id"}
                           params={{id: path.path}}>
                         {path.formattedString}
