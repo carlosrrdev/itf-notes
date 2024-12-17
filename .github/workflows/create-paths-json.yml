@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - main
-  workflow_dispatch: # Allows you to trigger it manually
+  workflow_dispatch:
 
 jobs:
   generate-paths-json:
@@ -15,28 +15,17 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-        # Step 2: Generate paths.json
-        # The paths.json file is created in the repository root
+      # Step 5: Generate paths.json
       - name: Generate paths.json
         run: |
-          # Delete existing paths.json if exists
           rm -f paths.json
-          
-          # Find all files in src/notes directory and create paths.json
           find src/notes -type f | jq -R . | jq -s . > paths.json
 
-      # Step 3: Commit and Push Changes
+      # Step 6: Commit and push changes
       - name: Commit and push changes
         run: |
-          # Configure git
-          git config user.name "GitHub Actions"
-          git config user.email "actions@github.com"
-          
-          # Stage and commit paths.json
+          git config user.name "carlosrrdev"
+          git config user.email "rr.carlos.dev@gmail.com"
           git add paths.json
-          
-          # Commit only if there is a change in paths.json
-          git commit -m "Update paths.json"
-          
-          # Push changes back to the repository
+          git diff --cached --exit-code || git commit -m "Update paths.json"
           git push
