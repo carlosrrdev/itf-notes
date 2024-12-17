@@ -15,24 +15,25 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      # Step 2: Generate paths.json
+        # Step 2: Generate paths.json
+        # The paths.json file is created in the repository root
       - name: Generate paths.json
         run: |
-          # Navigate to the notes directory
-          cd ./src/notes
-          
-          # Find all files and save the paths in paths.json
-          find . -type f | jq -R . | jq -s . > paths.json
+          # Find all files in src/notes directory and create paths.json
+          find src/notes -type f | jq -R . | jq -s . > paths.json
 
-      # Step 3: Commit and push changes
+      # Step 3: Commit and Push Changes
       - name: Commit and push changes
         run: |
-          # Navigate back and configure git
-          cd ..
-          git config --local user.name "GitHub Actions"
-          git config --local user.email "actions@github.com"
+          # Configure git
+          git config user.name "GitHub Actions"
+          git config user.email "actions@github.com"
           
-          # Stage paths.json, commit, and push
+          # Stage and commit paths.json
           git add paths.json
-          git commit -m "Update paths.json"
+          
+          # Commit only if there is a change in paths.json
+          git diff --cached --exit-code || git commit -m "Update paths.json"
+          
+          # Push changes back to the repository
           git push
